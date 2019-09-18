@@ -15,50 +15,55 @@
 
 			<h2>Mis Examenes</h2>
 
-			<div id="app">
-
-				<table class="tabla" id="tabla">
-					<thead>
-						<tr>
-							<th>NumControl</th>
-							<th>Nombre</th>
-							<th>Apellido Paterno</th>
-							<th>Apellido Materno</th>
-							<th>Plan</th>
-							<th>Carrera</th>
-							<th>Materia</th>
-							<th>Estado</th>
-							<th>Eliminar</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<tr v-for="examen in examenes" v-bind:class="{ pendiente: examen.estado == 2 }">
-							<td>{{ examen.numControl }}</td>
-							<td>{{ examen.nombre }}</td>
-							<td>{{ examen.apellidoPaterno }}</td>
-							<td>{{ examen.apellidoMaterno }}</td>
-							<td>{{ examen.nombrePlan }}</td>
-							<td>{{ examen.nombreCarrera }}</td>
-							<td>{{ examen.nombreMateria }}</td>
-							<td v-if="examen.estado == 2">Espera</td>
-							<td v-else>Aceptado</td>
-							<td>Eliminar</td>
-						</tr>
-					</tbody>
-				</table>
+			<table class="tabla" id="tabla">
+				<thead>
+					<tr>
+						<th>Numero Control</th>
+						<th>Nombre</th>
+						<th>Apellido Paterno</th>
+						<th>Apellido Materno</th>
+						<th>Plan</th>
+						<th>Carrera</th>
+						<th>Materia</th>
+						<th>Estado</th>
+						<th>Eliminar</th>
+					</tr>
+				</thead>
 				
-			</div>
+				
+				<tbody>
+
+					<?php 
+					foreach ($this->examenes as $row) {
+
+						$examen = new InfoExamen();
+						$examen = $row;
+						
+					
+					?>
+					<tr id="fila" class="estado-<?php echo $examen->estado ?>">
+						<td><?php echo $examen->numControl; ?></td>
+						<td><?php echo $examen->nombre; ?></td>
+						<td><?php echo $examen->apellidoPaterno; ?></td>
+						<td><?php echo $examen->apellidoMaterno; ?></td>
+						<td><?php echo $examen->nombrePlan; ?></td>
+						<td><?php echo $examen->nombreCarrera; ?></td>	
+						<td><?php echo $examen->nombreMateria; ?></td>	
+						<td><?php if($examen->estado == 1){echo "Aceptado";}else{echo "Espera";} ?></td>
+						<td>Eliminar</td>			
+					</tr>
+
+					<?php } ?>
+					
+				</tbody>
+
+			</table>
 			
 		</div>
 		
-		<input type="button" onclick="tableToExcel('tabla', 'Ejemplo')" value="Obtener Excel">
 
 	</div>
 
 
 </body>
-<?php require 'views/vue.php' ?>
-<script type="text/javascript" src="<?php echo constant('URL') . 'public/js/obtenerExamenes.js' ?>"></script>
-<script type="text/javascript" src="<?php echo constant('URL') . 'public/js/obtenerExcel.js' ?>"></script>
 </html>

@@ -15,29 +15,31 @@ class ConsultarExamenes extends Controller{
 		//los pasamos a la vista
 		$this->view->examenes = $examenes;
 
-		$this->view->render('administrador/examenesPorCarrera');
+		$this->view->render('administrador/examenes');
 	}
 
 	function examenesPorPlan(){
 
 		$plan = $_POST['plan'];
-		//obtenemos los examenes por carrera
+		//obtenemos los examenes por plan
 		$examenes = $this->model->getExamenesByPlan($plan);
 		//los pasamos a la vista
 		$this->view->examenes = $examenes;
 
-		$this->view->render('administrador/examenesPorPlan');
+		$this->view->render('administrador/examenes');
 	}
 
 	function examenesPorMateria(){
 
+		$plan = $_POST['plan'];
 		$materia = $_POST['materia'];
-		//obtenemos los examenes por carrera
-		$examenes = $this->model->getExamenesByMateria($materia);
+		//obtenemos los examenes por materia
+		$examenes = $this->model->getExamenesByMateria(['plan' => $plan,
+														'materia' => $materia]);
 		//los pasamos a la vista
 		$this->view->examenes = $examenes;
 
-		$this->view->render('administrador/examenesPormateria');
+		$this->view->render('administrador/examenes');
 	}
 }
 

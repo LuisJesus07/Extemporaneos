@@ -3,7 +3,7 @@ var urlMaterias = 'http://localhost/Extemporaneos/recursos/recursos/obtenerMater
 var urlPlanes = 'http://localhost/Extemporaneos/recursos/recursos/obtenerPlanes'
 
 var carrera = "ITC";
-var urlExamnesPorCarrera = `http://localhost/Extemporaneos/administrador/consultarExamenes/examenesPorCarrera?(carrera=${this.carrera})`;
+var urlExamnesPorCarrera = 'http://localhost/Extemporaneos/administrador/consultarExamenes/obtenerExamenesPorCarrera';
 
 const materias = new Vue({
 	el:'#llenarSelect',
@@ -11,7 +11,6 @@ const materias = new Vue({
 		this.getMaterias();
 		this.getCarreras();
 		this.getPlanes();
-		this.getExamenesPorCarrera();
 	},
 	data:{
 		materias: [],
@@ -42,7 +41,7 @@ const materias = new Vue({
 		getExamenesPorCarrera: function(){
 			this.$http.get(urlExamnesPorCarrera).then(function(response){
 				this.examenes = response.body
-				console.log(response)
+				
 			})
 		}
 	}

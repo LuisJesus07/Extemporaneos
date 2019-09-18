@@ -7,15 +7,24 @@ class ConsultarExamenes extends Controller{
 	}
 
 	function renderVista(){
-		$this->view->render('alumnos/consultarExamenes');
+
+		//obtener los examenes del alumno 
+		$examenes = $this->model->getAllExamenesById(1);
+		//mandar los examnes a la vista
+		$this->view->examenes = $examenes;
+
+		$this->view->render('alumnos/consultarExamenes'); 
 	}
 
-	function obtenerExamenes(){
+	/*function obtenerExamenes(){
+
 		//obtener los examenes del alumno 
 		$examenes = $this->model->getAllExamenesById(1);
 
 		echo $examenes;
-	}
+
+	}*/
+
 
 	
 }

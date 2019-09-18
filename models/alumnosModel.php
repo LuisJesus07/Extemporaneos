@@ -58,7 +58,7 @@ class AlumnosModel extends Model{
 
 			
 
-			return json_encode($examenesSolicitados);
+			return $examenesSolicitados;
 
 		}catch(PDOException $e){
 			return $e;
