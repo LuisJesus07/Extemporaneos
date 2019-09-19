@@ -2,6 +2,7 @@
 
 class InfoExamen{
 
+	public $idSolicitudExamen;
 	public $numControl;
 	public $nombre;
 	public $apellidoPaterno;

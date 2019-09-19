@@ -24,7 +24,7 @@
 				<div class="opcion">
 					<img src="<?php echo constant('URL') ?>public/img/inscribir.png">
 
-					<a href="<?php echo constant('URL') . 'administrador/solicitudesNoAceptadas' ?>"><input type="button" name="" value="Aceptar Solicitudes"></a>
+					<a href="<?php echo constant('URL') . 'administrador/solicitudesEnEspera' ?>"><input type="button" name="" value="Aceptar Solicitudes"></a>
 					
 				</div>
 

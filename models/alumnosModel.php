@@ -1,5 +1,6 @@
 <?php
 include_once 'models/obj/infoExamenes.php';
+include_once 'models/obj/materia.php';
 
 class AlumnosModel extends Model{
 
@@ -86,6 +87,36 @@ class AlumnosModel extends Model{
 
 		}
 
+	}
+
+	function getMateriasByPlan($plan){
+
+		$materias = [];
+
+		try{
+
+			$query = $this->db->connect()->prepare('SELECT MAT.idMateria,MAT.nombreMateria,PLAN.nombrePlan
+				FROM materias AS MAT
+				INNER JOIN planesDeEstudio AS PLAN ON MAT.idPlanDeEstudio=PLAN.idPlanDeEstudio
+				WHERE PLAN.nombrePlan =:plan');
+
+			$query->execute(['plan' => $plan]);
+
+			while($row = $query->fetch()){
+				$materia = new Materia();
+
+				$materia->idMateria = $row['idMateria'];
+				$materia->nombreMateria = $row['nombreMateria'];
+				$materia->nombrePlan = $row['nombrePlan'];
+
+				array_push($materias, $materia);
+			}
+
+			return $materias;
+
+		}catch(PDOException $e){
+			return $e;
+		}
 	}
 }
 

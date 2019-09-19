@@ -7,6 +7,12 @@ class SolicitarExamen extends Controller{
 	}
 
 	function renderVista(){
+
+		//obtener materias del plan al que perrtence el alumno
+		$materias = $this->model->getMateriasByPlan('IDS 2015');
+		//pasarle las materias a la vista
+		$this->view->materias = $materias;
+		
 		$this->view->render('alumnos/solicitarExamen');
 	}
 
@@ -42,22 +48,7 @@ class SolicitarExamen extends Controller{
 
 	}
 
-	function obtenerMaterias(){
-		//obtener todas las materias a partir de un plan
-		$materias = $this->model->getAllMaterias();
 
-		
-		echo $materias;
-	}
-
-	function obtenerCarreras(){
-
-		$carreras = $this->model->getAllCarreras();
-
-		echo $carreras;
-
-
-	}
 }
 
 ?>

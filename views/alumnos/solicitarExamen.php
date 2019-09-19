@@ -11,42 +11,48 @@
 
 		<h1>Examenes a Solicitar</h1>
 	
-		<div id="llenarSelect">
 
-			<form method="POST" action="<?php echo constant('URL') . 'alumnos/solicitarExamen/solicitud' ?>">
+		<form method="POST" action="<?php echo constant('URL') . 'alumnos/solicitarExamen/solicitud' ?>">
 
-				<div class="panel">
-					
-					<h2>Extemporaneo</h2>
-
-					<label>IdAlumno: </label>
-					<input type="text" name="idAlumno"><br>
-
-					<!--<label>Materia: </label>
-					<input type="text" name="materia1">-->
-					<label>Materia: </label>
-					<select name="materia1">
-						<option v-for="materia in materias" :value="materia.idMateria">{{ materia.nombreMateria }}</option>
-					</select>
-
-
-
-
-				</div>
-
-
-				<div class="panel alerta">
-					<p>A partir de la tercera solicitud seran sometidas a revision para su autorizacion</p>
-
-					<img src="<?php echo constant('URL') . 'public/img/alerta.png' ?>">
-				</div>
-
-
-				<input type="submit" name="" class="btn-registrar">
+			<div class="panel">
 				
-			</form>
+				<h2>Extemporaneo</h2>
 
-		</div>
+				<label>IdAlumno: </label>
+				<input type="text" name="idAlumno"><br>
+
+
+				<label>Materia :</label>
+				<select name="materia1">
+					<?php 
+					foreach ($this->materias as $row) {
+
+						$materia = new Materia();
+						$materia = $row;
+						
+					
+					?>
+
+					<option value="<?php echo $materia->idMateria; ?>"><?php echo $materia->nombreMateria; ?></option>
+
+					<?php } ?>
+				</select>
+
+			</div>
+
+
+			<div class="panel alerta">
+				<p>A partir de la tercera solicitud seran sometidas a revision para su autorizacion</p>
+
+				<img src="<?php echo constant('URL') . 'public/img/alerta.png' ?>">
+			</div>
+
+
+			<input type="submit" name="" class="btn-registrar">
+			
+		</form>
+
+		
 			
 		
 	</div>

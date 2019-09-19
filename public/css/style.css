@@ -244,6 +244,41 @@ tr:nth-child(even){
 	background-color: #f5d4d7 !important;
 }
 
+/* estilos tabla */
+.dt-buttons{
+	margin-left: 50%;
+    margin-left: 80%;
+    margin-top: 1%;
+
+}
+
+.dt-button{
+	text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    border-radius: 6px;
+    border: 2px solid black;
+}
+
+.dt-button span{
+	color: white;
+}
+
+.buttons-pdf{
+	background-color: #e85844;
+}
+
+.buttons-excel{
+	background-color: #2f854f;
+}
+
+.dataTables_filter{
+	margin-left: 25%;
+	margin-top: -50px;
+}
+
 
 
 /* consulta alumno */
