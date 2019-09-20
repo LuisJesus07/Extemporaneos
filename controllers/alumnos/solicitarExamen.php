@@ -4,12 +4,17 @@ class SolicitarExamen extends Controller{
 
 	function __construct(){
 		parent::__construct();
+		//verificar que sea admin
+		session_start();
+		if($_SESSION['datosUsuario']['privilegios'] != 2){
+			header("location:".constant('URL') . 'login/mainLogin');
+		}
 	}
 
 	function renderVista(){
 
 		//obtener materias del plan al que perrtence el alumno
-		$materias = $this->model->getMateriasByPlan('Comunicación 2000');
+		$materias = $this->model->getMateriasByPlan($_SESSION['datosUsuario']['nombrePlan']);
 		//pasarle las materias a la vista
 		$this->view->materias = $materias;
 
@@ -20,7 +25,7 @@ class SolicitarExamen extends Controller{
 	function solicitud(){
 
 		//recibir las solicitudes
-		$idAlumno = $_POST['idAlumno'];
+		$idAlumno = $_SESSION['datosUsuario']['idUsuario'];
 		$idMateria1 = $_POST['materia1'];
 
 		//ver el estado del alumno(disponible para solicitar o no)

@@ -4,12 +4,17 @@ class ConsultarExamenes extends Controller{
 
 	function __construct(){
 		parent::__construct();
+		//verificar que sea admin
+		session_start();
+		if($_SESSION['datosUsuario']['privilegios'] != 2){
+			header("location:".constant('URL') . 'login/mainLogin');
+		}
 	}
 
 	function renderVista(){
 
 		//obtener los examenes del alumno 
-		$examenes = $this->model->getAllExamenesById(1);
+		$examenes = $this->model->getAllExamenesById($_SESSION['datosUsuario']['idUsuario']);
 		//mandar los examnes a la vista
 		$this->view->examenes = $examenes;
 

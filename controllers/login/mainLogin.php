@@ -15,14 +15,16 @@ class MainLogin extends Controller{
 		$correo = $_POST['correo'];
 		$password = $_POST['password'];
 
-		if($this->model->verificarUsuario(['correo' => $correo,
-										   'password' => $password]) == 1){
+		//obtener los datos del usuario
+		$datosUsuario = $this->model->verificarUsuario(['correo' => $correo,
+										  			 'password' => $password]);
+
+		//verificar que tipo de cuenta es
+		if($datosUsuario['privilegios'] == 1){
 			//mandar a la vista admin
-			//$this->view->render('administrador/index');
 			header("location:".constant('URL') . 'administrador/menu');
 		}else{
 			//mandar a la vista alumno
-			//$this->view->render('alumnos/index');
 			header("location:".constant('URL') . 'alumnos/menu');
 		}
 	}

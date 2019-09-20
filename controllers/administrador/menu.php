@@ -4,9 +4,12 @@ class Menu extends Controller{
 
 	function __construct(){
 		parent::__construct();
-
+		//iniciamos la sesion
 		session_start();
-		echo $_SESSION['idUsuario'];
+		//verificar que sea admin
+		if($_SESSION['datosUsuario']['privilegios'] != 1){
+			header("location:".constant('URL') . 'login/mainLogin');
+		}
 	}
 
 	function renderVista(){

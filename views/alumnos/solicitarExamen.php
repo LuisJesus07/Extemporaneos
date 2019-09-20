@@ -19,8 +19,8 @@
 				
 				<h2>Extemporaneo</h2>
 
-				<label>IdAlumno: </label>
-				<input type="text" name="idAlumno"><br>
+				<!--<label>IdAlumno: </label>
+				<input type="text" name="idAlumno"><br>-->
 
 
 				<label>Materia :</label>

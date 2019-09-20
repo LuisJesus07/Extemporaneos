@@ -31,6 +31,7 @@ class LoginModel extends Model{
 
 	function verificarUsuario($datos){
 
+
 		try{
 
 			$query = $this->db->connect()->prepare('SELECT USU.privilegios,USU.idUsuario,USU.numControl,USU.correo,USU.nombre,PLAN.nombrePlan
@@ -41,13 +42,24 @@ class LoginModel extends Model{
 			$query->execute(['correo' => $datos['correo'],
 							 'password' => $datos['password']]);
 
-
-			//guardar en sesion id del usuario
 			session_start();
-			$_SESSION['idUsuario'] = $query->fetch()[0];
+			$_SESSION['datosUsuario'];
+
+			while($row = $query->fetch()){
+
+				$_SESSION['datosUsuario']['privilegios'] = $row['privilegios'];
+				$_SESSION['datosUsuario']['idUsuario'] = $row['idUsuario'];
+				$_SESSION['datosUsuario']['numControl'] = $row['numControl'];
+				$_SESSION['datosUsuario']['correo'] = $row['correo'];
+				$_SESSION['datosUsuario']['nombre'] = $row['nombre'];
+				$_SESSION['datosUsuario']['nombrePlan'] = $row['nombrePlan'];
+
+			}
 
 
-			return $_SESSION['idUsuario'];
+
+
+			return $_SESSION['datosUsuario'];
 
 		}catch(PDOException $e){
 			return $e;
