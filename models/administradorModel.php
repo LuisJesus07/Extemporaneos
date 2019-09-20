@@ -99,7 +99,7 @@ class AdministradorModel extends Model{
 				INNER JOIN carreras AS CARR ON CARR.idCarrera=PLAN.idCarrera
 				INNER JOIN solicitudesExamenes AS SOLI ON USU.idUsuario=SOLI.idUsuario
 				INNER JOIN materias AS MAT ON MAT.idMateria=SOLI.idMateria
-				WHERE PLAN.nombrePlan =:plan');
+				WHERE PLAN.nombrePlan =:plan AND SOLI.estado = 1');
 
 			$query->execute(['plan' => $plan]);
 
@@ -141,7 +141,7 @@ class AdministradorModel extends Model{
 				INNER JOIN carreras AS CARR ON CARR.idCarrera=PLAN.idCarrera
 				INNER JOIN solicitudesExamenes AS SOLI ON USU.idUsuario=SOLI.idUsuario
 				INNER JOIN materias AS MAT ON MAT.idMateria=SOLI.idMateria
-				WHERE PLAN.nombrePLAN =:plan AND MAT.nombreMateria =:materia');
+				WHERE PLAN.nombrePLAN =:plan AND MAT.nombreMateria =:materia AND SOLI.estado = 1');
 
 			$query->execute(['plan' => $datos['plan'],
 							 'materia' => $datos['materia']]);
