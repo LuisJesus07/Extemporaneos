@@ -13,42 +13,76 @@
 
 			<h2>Filtrar Busqueda</h2>
 
-			<div class="por-carrera" style="background-color: red">
-				<form method="POST" action="<?php echo constant('URL') . 'administrador/consultarExamenes/examenesPorCarrera' ?>">
+			<div class="panel filtro">
+				<div class="por-carrera">
+					<form method="POST" action="<?php echo constant('URL') . 'administrador/consultarExamenes/examenesPorCarrera' ?>">
 
-					<label>Por Carrera:</label>
-					<input type="text" name="carrera">
+						<h4>Por Carrera</h4>
+						<!--<input type="text" name="carrera"><br>-->
 
-					<input type="submit" name="">
-					
-				</form>
+						<select name="carrera">
+							<option>Licenciatura en Comunicación</option>
+							<option>Licenciatura en Derecho</option>
+							<option>Licenciatura en Criminología</option>
+							<option>Licenciatura en Ciencias Políticas y Administración Pública</option>
+						</select><br>
+
+						<input type="submit" name="" value="Buscar">
+						
+					</form>
+				</div>
 			</div>
 
-			<div class="por-plan" style="background-color: yellow">
-				<form method="POST" action="<?php echo constant('URL') . 'administrador/consultarExamenes/examenesPorPlan' ?>">
+			<div class="panel filtro">
+				<div class="por-plan">
+					<form method="POST" action="<?php echo constant('URL') . 'administrador/consultarExamenes/examenesPorPlan' ?>">
 
-					<label>Por Plan:</label>
-					<input type="text" name="plan">
+						<h4>Por Plan</h4>
+						<!--<input type="text" name="plan"><br>-->
 
-					<input type="submit" name="">
-					
-				</form>
+						<select name="plan">
+							<option>Comunicación 2000</option>
+							<option>Comunicación 2010</option>
+							<option>Derecho 1993</option>
+							<option>Derecho 2012</option>
+							<option>Criminología 2018</option>
+							<option>CP y AP 1978</option>
+							<option>CP y AP 1995</option>
+						</select><br>
+
+						<input type="submit" name="" value="Buscar">
+						
+					</form>
+				</div>
 			</div>
 
-			<div class="por-materia" style="background-color: blue">
-				<form method="POST" action="<?php echo constant('URL') . 'administrador/consultarExamenes/examenesPorMateria' ?>">
+			<div class="panel filtro">
+				<div class="por-materia" >
+					<form method="POST" action="<?php echo constant('URL') . 'administrador/consultarExamenes/examenesPorMateria' ?>">
 
-					<label>Por Materia:</label><br>
+						<h4>Por Materia:</h4><br>
 
-					<label>Plan: </label>
-					<input type="text" name="plan">
+						<label>Plan: </label>
+						<!--<input type="text" name="plan">-->
+						<select name="plan">
+							<option>Comunicación 2000</option>
+							<option>Comunicación 2010</option>
+							<option>Derecho 1993</option>
+							<option>Derecho 2012</option>
+							<option>Criminología 2018</option>
+							<option>CP y AP 1978</option>
+							<option>CP y AP 1995</option>
+						</select><br>
 
-					<label>Materia: </label>
-					<input type="text" name="materia">
+						<div class="input-materia">
+							<label>Materia: </label>
+							<input type="text" name="materia">
+						</div>
 
-					<input type="submit" name="">
-					
-				</form>
+						<input type="submit" name="" value="Buscar">
+						
+					</form>
+				</div>
 			</div>
 			
 		</div>
