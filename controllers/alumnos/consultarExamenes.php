@@ -16,6 +16,19 @@ class ConsultarExamenes extends Controller{
 		$this->view->render('alumnos/consultarExamenes'); 
 	}
 
+	function eliminarExamen($param = null){
+
+		$idSolicitudExamen = $param[0];
+
+		if($this->model->deleteSolicitud($idSolicitudExamen)){
+			$mensaje = "Examen eliminado";
+		}else{
+			$mensaje = "No se pudo eliminar el examen";
+		}
+
+		echo $mensaje;
+	}
+
 
 
 

@@ -1,4 +1,5 @@
 <?php
+
 include_once 'models/obj/infoExamenes.php';
 include_once 'models/obj/materia.php';
 
@@ -25,6 +26,24 @@ class AlumnosModel extends Model{
 		}
 	}
 
+
+	function deleteSolicitud($idSolicitudExamen){
+
+		try{
+
+			$query = $this->db->connect()->prepare('DELETE FROM solicitudesExamenes WHERE idSolicitudExamen=:idSolicitudExamen');
+
+			$query->execute(['idSolicitudExamen' => $idSolicitudExamen]);
+
+			return true;
+
+		}catch(PDOException $e){
+			return $e;
+		}
+	}
+
+
+
 	function getAllExamenesById($id){
 
 		$examenesSolicitados = [];
@@ -32,7 +51,7 @@ class AlumnosModel extends Model{
 		try{
 
 			$query = $this->db->connect()->prepare('SELECT USU.idUsuario,USU.numControl,USU.nombre,USU.apellidoPaterno,USU.apellidoMaterno,PLAN.nombrePlan,CARR.nombreCarrera,
-				MAT.nombreMateria,SOLI.estado
+				MAT.nombreMateria,SOLI.estado,SOLI.idSolicitudExamen
 				FROM usuarios AS USU 
 				INNER JOIN planesDeEstudio AS PLAN ON PLAN.idPlanDeEstudio=USU.idPlanDeEstudio
 				INNER JOIN carreras AS CARR ON CARR.idCarrera=PLAN.idCarrera
@@ -42,9 +61,13 @@ class AlumnosModel extends Model{
 
 			$query->execute(['id' => $id]);
 
+
+
 			while($row = $query->fetch()){
+
 				$examen = new InfoExamen();
 
+				$examen->idSolicitudExamen = $row['idSolicitudExamen'];
 				$examen->numControl = $row['numControl'];
 				$examen->nombre = $row['nombre'];
 				$examen->apellidoPaterno = $row['apellidoPaterno'];
@@ -98,7 +121,7 @@ class AlumnosModel extends Model{
 			$query = $this->db->connect()->prepare('SELECT MAT.idMateria,MAT.nombreMateria,PLAN.nombrePlan
 				FROM materias AS MAT
 				INNER JOIN planesDeEstudio AS PLAN ON MAT.idPlanDeEstudio=PLAN.idPlanDeEstudio
-				WHERE PLAN.nombrePlan =:plan');
+				WHERE PLAN.nombrePlan =:plan ORDER BY MAT.nombreMateria ASC');
 
 			$query->execute(['plan' => $plan]);
 

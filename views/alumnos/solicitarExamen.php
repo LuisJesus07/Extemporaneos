@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>Menu Alumnos</title>
 </head>
 <body>
@@ -60,6 +61,4 @@
 	<?php require 'views/sidebar.php' ?>
 
 </body>
-<?php require 'views/vue.php' ?>
-<script type="text/javascript" src="<?php echo constant('URL') . 'public/js/obtenerMaterias.js' ?>"></script>
 </html>

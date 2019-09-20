@@ -7,7 +7,7 @@
 
 	<?php require 'views/header.php' ?>
 
-
+	<div id="respuesta"></div>
 
 	<div class="opciones datos-tabla">
 
@@ -31,7 +31,7 @@
 				</thead>
 				
 				
-				<tbody>
+				<tbody id="tbody-examenes">
 
 					<?php 
 					foreach ($this->examenes as $row) {
@@ -41,7 +41,8 @@
 						
 					
 					?>
-					<tr id="fila" class="estado-<?php echo $examen->estado ?>">
+					<tr id="fila-<?php echo $examen->idSolicitudExamen ?>" 
+						class="estado-<?php echo $examen->estado ?>">
 						<td><?php echo $examen->numControl; ?></td>
 						<td><?php echo $examen->nombre; ?></td>
 						<td><?php echo $examen->apellidoPaterno; ?></td>
@@ -50,7 +51,7 @@
 						<td><?php echo $examen->nombreCarrera; ?></td>	
 						<td><?php echo $examen->nombreMateria; ?></td>	
 						<td><?php if($examen->estado == 1){echo "Aceptado";}else{echo "Espera";} ?></td>
-						<td>Eliminar</td>			
+						<td><a class="btn-eliminar" data-rol="maestro" data-idSolicitud="<?php  echo $examen->idSolicitudExamen ?>"><i class="fas fa-trash-alt"></i></a></td>			
 					</tr>
 
 					<?php } ?>
@@ -66,4 +67,5 @@
 
 
 </body>
+<script type="text/javascript" src="<?php echo constant('URL') . 'public/js/eliminarSolicitud.js' ?>"></script>
 </html>

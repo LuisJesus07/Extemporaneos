@@ -9,9 +9,10 @@ class SolicitarExamen extends Controller{
 	function renderVista(){
 
 		//obtener materias del plan al que perrtence el alumno
-		$materias = $this->model->getMateriasByPlan('IDS 2015');
+		$materias = $this->model->getMateriasByPlan('Comunicación 2000');
 		//pasarle las materias a la vista
 		$this->view->materias = $materias;
+
 		
 		$this->view->render('alumnos/solicitarExamen');
 	}
@@ -40,10 +41,11 @@ class SolicitarExamen extends Controller{
 											 	'idUsuario' => $idAlumno,
 											 	'idMateria' => $idMateria1])){
 
-			echo "Solicitud Realizada con Exito";
+			$this->view->render('alumnos/solicitudExitosa');
+
 		}else{
 
-			echo "Ocurrio un error";
+			$this->view->render('alumnos/solicitudError');
 		}
 
 	}
